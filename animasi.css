@@ -1,0 +1,55 @@
+.animat {
+width: 100%;
+position: relative;
+-webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+-webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+-webkit-animation-delay: 2s; /* Safari 4.0 - 8.0 */
+animation-name: example;
+animation-duration: 4s;
+animation-delay: -1s;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes example {
+
+
+
+75%  { left:0px; top:200px;}
+100% { left:0px; top:0px;}
+}
+
+/* Standard syntax */
+@keyframes example {
+
+
+75%  { left:0px; top:200px;}
+100% { left:0px; top:0px;}
+}
+
+.animat2 {
+width: 100%;
+position: relative;
+-webkit-animation-name: animatest; /* Safari 4.0 - 8.0 */
+-webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+-webkit-animation-delay: 2s; /* Safari 4.0 - 8.0 */
+animation-name: animatest;
+animation-duration: 5s;
+animation-delay: -1s;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes animatest {
+
+
+
+75%  { left:0px; top:200px;}
+100% { left:0px; top:0px;}
+}
+
+/* Standard syntax */
+@keyframes animatest {
+
+
+75%  { left:0px; top:200px;}
+100% {left:0px; top:0px;}
+}
