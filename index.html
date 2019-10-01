@@ -1,151 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Twibbon</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/addons/p5.dom.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-	<style>
-		body {
-			background: #ebecf5;
-		}
-		header {
-			padding: 20px 0px;
-		}
-
-		.btn-shadow {
-			    box-shadow: 0px 5px 10px #dcdcdc4d !important;
-    			border-radius: 6px;
-    			margin-bottom: 20px;
-		}
-
-		.display-4 {
-			font-family: 'Nunito', sans-serif;
-		}
-
-		#canvas {
-			padding:10px;
-		}
-
-		#inputbtn {
-			margin:10px;
-			width: 350px;
-		}
-	</style>
-
+	<link rel="icon" type="image/png" href="image/logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/layout.css">
+    <!-- <link rel="stylesheet" href="test4.css"> -->
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/fabric.min.js"></script>
+    <script src="js/FileSaver.js"></script>
+    <script src="js/canvas-toBlob.js"></script>
+    <script src="js/material.min.js"></script>
+    <link rel="shortcut icon" href="">
+    <title>Manupela</title>
 </head>
 <body>
-	<header>
-		<div class="container">
-			<div class="row">
-				<div class="col-auto mr-auto">
-					<h5><small class="text-muted">TWIBBON</small></h5>
-				</div>
-				<div class="col-auto">
-					<span class="text-muted"><a href="http://instagram.com/"><i class="icon-social-instagram"></i> PMII</a></span> | 
-					<span class="text-muted"><a href="https://github.com//"><i class="icon-social-github"></i> PMII</a></span>
-				</div>
-			</div>
-			<hr>
-		</div>
-	</header>
-	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-sm-12">
-					<h9 class="display-4">TWIBBON MAPALA<small></small></h9>
-					<hr class="bg-success">
-					<p>Twibbon lebih mudah dan cepat tanpa editing</p>
-					<button class="btn d-none d-sm-block btn-shadow btn-light" onclick="download()"><h6><i class="icon-arrow-down"></i> Download</h6></button>
-					<button class="btn d-none d-sm-block btn-shadow btn-light" onclick="remake()"><h6><i class="icon-refresh"></i> Remake</h6></button>
-					<!-- <button class="btn btn-shadow btn-light" onclick="changeColor()"><h6><i class="icon-settings"></i> Color</h6></button> -->
-					<hr>
-				</div>
-				<div class="col-md-6 col-sm-12 justify-content-end" style="margin-bottom:70px">
-						<button class="btn btn-light" id="inputbtn"><h6><i class="icon-cloud-upload"></i> Masukan foto selfie</h6></button>
-						<div id="canvas"></div>
-				</div>
-				<div class="col-md-12 d-block d-sm-none" style="position: fixed; bottom: 5px; left:30px">
-					<div class="row">
-						<button class="btn btn-shadow btn-light" style="margin-right:5px" onclick="download()"><h6><i class="icon-arrow-down"></i> Download</h6></button>
-						<button class="btn btn-shadow btn-light" style="margin-left:5px;" onclick="remake()"><h6><i class="icon-refresh"></i> Remake</h6></button>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-	</section>
+    <div class="container">
+        
+        <div class="wrapper">
+            <div class="editor">
+                <div class="canvas-padding">
+                    <canvas id="c"></canvas>
+                </div>
+                <div class="tombol">                        
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
+                        <input class="mdl-textfield__input" placeholder="Unggah foto mu!" type="text" id="uploadFile" readonly/>
+                        <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
+                            <i class="material-icons">attach_file</i><input type="file" id="uploadBtn">
+                        </div>
+                    </div>
+                   
+                    <br>
+                    <button id="download" class="mdl-button bg-success mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">unduh</button>   
+                    
+                </div>
+            </div>
+            
+            <div class="control animat">
 
-	<script>
+                <h2 class="headline">PK PMII UNUGIRI BOJONEGORO</h2>
+                <div class="spinner-grow text-primary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-secondary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-success" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-danger" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-warning" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-info" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-light" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-dark" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                                                    
+                    <h2>Ayo buat foto Twibbon Kamu!</h2>
+                        <p>
+                            Unggah foto terbaik kamu               
+                        </p>
+                        <!-- <input type="file" id="d"> -->
+                 
+                        </div>
+                        <!-- <div class="about">
+                        </div> -->
+                        <div class="contact">
+                            
+                            <div class="nomor">
+                                <h3>Kontak PMII</h3>
+                                    <ul>
+                                        <li><a class="text-success" href="https://jowokoding.blogspot.com">Didik Ariyanto</a> <br> <p>085215177089</p></li>
+                                    </ul>
+                                </div>
+                                <div class="sosmed">
+                                    <h3>Sosial Media Manupela</h3>
+                                        <ul>
+                                            <li>Instagram <a href="http://instagram.com/pkpmiiunu">Mapala Unugiri</a></li>
+                                            <li>Situs Web <a href="https://pmiiunugiri.blogspot.com/">Official Blog</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="sosmed">
+                                       
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>
+                                    document.getElementById("uploadBtn").onchange = function () {
+                                        document.getElementById("uploadFile").value = this.files[0].name;
+                                    };
+                                    var canvas = new fabric.Canvas('c');
+                                    canvas.setWidth(1080);
+                                    canvas.setHeight(1350);
+                                    
+                                    var canvasWrapper = document.getElementById('c');
+                                    var canvasWrapperWidth = canvasWrapper.clientWidth;
+                                    $(function () {
+                                        $(":file").change(function () {
+                                            if (this.files && this.files[0]) {
+                                                var reader = new FileReader();
+                                                reader.onload = imageIsLoaded;
+                                                reader.readAsDataURL(this.files[0]);
+                                            }
+                                        });
+                                    });
+                                    fabric.Image.fromURL('twibbon_pmii.png',function(img){
+                                        img.scaleToWidth(canvas.getWidth());
+                                        canvas.setOverlayImage(img, canvas.renderAll.bind(canvas));
+                                    });
+                                    function imageIsLoaded(e) {
+                                        fabric.Image.fromURL(e.target.result,function(img){
+                                            var aspectRatio = 1350/1080;
+                                            var factor = 1080 / img.width;
+                                            img.set({
+                                                scaleX: factor,
+                                                scaleY: factor 
+                                            });
+                                                                                        canvas.add(img);
+                                            canvas.item(0).set({
+                                                borderColor: 'gray',
+                                                cornerColor: 'black',
+                                                cornerSize: 70,
+                                                borderScaleFactor: 10,
+                                                hasBorders: true,
+                                                
+                                                rotatingPointOffset:200,
+                                                padding:60, 
+                                                transparentCorners: true
+                                            });
+                                            canvas.setActiveObject(canvas.item(0));
+                                            this.__canvases.push(canvas);
+                                            canvas.sendToBack(img);
+                                        });
+                                    };
+                                    $("#download").click(function(){
+                                        $("#c").get(0).toBlob(function(blob){
+                                            saveAs(blob, "TWB_pmii.png");
+                                        });
+                                    });
+                                </script>
+                                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+                                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-		function preload() {
-		   mask = loadImage('twibbon_pmii.png');
-		}
 
-		function setup() {
-			var uploadBtn = createFileInput(imageUpload);
-			uploadBtn.parent('inputbtn');
-			  // create canvas
-			  var c = createCanvas(600, 550);
-			  background('#fff');
-			  c.parent('canvas');
-			  // Add an event for when a file is dropped onto the canvas
-			  c.drop(gotFile);
-		}
-
-		function draw() {
-		  fill(0);
-		  noStroke();
-		  textSize(24);
-		  textAlign(CENTER);
-		  text('Drag your Photos.', width/2, height/2);
-		  noLoop();
-		}
-
-		function remake() {
-			background('#fff');
-			redraw();
-		}
-
-		// function changeColor() {
-		// 	image(img, mouseX, mouseY, img.width, img.height);
-		// }
-
-		function download() {
-			saveCanvas("TwibbonPMII", 'jpg');
-		}
-
-		function gotFile(file) {
-		  // If it's an image file
-		  if (file.type === 'image') {
-		    // Create an image DOM element but don't show it
-		    background('#fff');
-		    redraw();
-		    var img = createImg(file.data).hide();
-		    // Draw the image onto the canvas
-		   image(img, 0, 0, width , height);
-
-		   
-		   image(mask, 0, 0, width, height);
-		  } else {
-		    println('Not an Photos file!');
-		  }
-		}
-
-		function imageUpload(file){
-		    img = loadImage(file.data,function(){
-		    	background('#fff');
-		    	redraw();
-		    	image(img, 0, 0, width , height);
-		        image(mask,0,0,width,height);
-		    })        
-		}
-	</script>
-
-</body>
-</html>
+                            </body>
+                            </html>
